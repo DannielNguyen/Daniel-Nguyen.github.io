@@ -2,208 +2,590 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Name | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <title>Daniel Nguyen | Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: #f9fafb;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --header-bg: #111827;
+      --border: #e5e7eb;
+      --ink: #1f2937;
+      --ink-muted: #6b7280;
+      --ink-light: #9ca3af;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --radius: 8px;
     }
 
-    /* Top Navigation Tabs */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--header-bg);
+      padding: 3.5rem 1.5rem 0;
+    }
+
+    .header-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f9fafb;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .header-role {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 0.9rem;
+    }
+
+    header p.bio {
+      max-width: 560px;
+      font-size: 0.95rem;
+      color: #d1d5db;
+      line-height: 1.7;
+      margin: 0 auto 1.4rem;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .header-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      color: #93c5fd;
+      text-decoration: none;
+      padding: 5px 11px;
+      border: 1px solid rgba(147,197,253,0.25);
+      border-radius: 100px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .header-links a:hover {
+      background: rgba(147,197,253,0.1);
+      border-color: rgba(147,197,253,0.5);
+    }
+
+    /* ── TABS (attached to bottom of header) ── */
     .tabs {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      background: #ffffff;
-      padding: 1rem;
-      border-bottom: 1px solid #e5e7eb;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 0 -1.5rem;
+      padding: 0 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+    .tabs::-webkit-scrollbar { display: none; }
 
-    .tab-button {
-      padding: 0.6rem 1.2rem;
+    .tab-btn {
+      flex-shrink: 0;
+      padding: 0.85rem 1.1rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: #9ca3af;
+      background: none;
       border: none;
-      background: #e5e7eb;
-      border-radius: 0.4rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
       cursor: pointer;
-      font-size: 1rem;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
     }
+    .tab-btn:hover { color: #e5e7eb; }
+    .tab-btn.active { color: #f9fafb; border-bottom-color: #3b82f6; }
 
-    .tab-button.active {
-      background: #2563eb;
-      color: white;
-    }
-
-    header {
-      background: #111827;
-      color: #f9fafb;
-      padding: 2rem;
-      text-align: center;
-    }
-
+    /* ── MAIN ── */
     main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 2.5rem;
     }
 
-    .tab-content {
-      display: none;
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── SHARED ── */
+    .section-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .tab-content.active {
-      display: block;
+    /* ── ABOUT ── */
+    .about-body p {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
     }
+    .about-body p strong { color: var(--ink); }
 
-    .projects {
+    .stats-row {
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .stat {
+      background: var(--surface);
+      padding: 1.25rem 1.4rem;
+    }
+    .stat-n {
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.03em;
+    }
+    .stat-l { font-size: 0.75rem; color: var(--ink-muted); }
+
+    /* ── PROJECTS ── */
+    .project-list { display: flex; flex-direction: column; }
+    .project-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-body { flex: 1; }
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      transition: color 0.15s;
+    }
+    .project-item:hover .project-name { color: var(--accent); }
+    .project-desc {
+      font-size: 0.87rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.55rem;
+      line-height: 1.6;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-size: 0.68rem;
+      font-weight: 400;
+      padding: 2px 9px;
+      background: #f3f4f6;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--ink-muted);
+    }
+    .project-arrow {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      padding-top: 2px;
+      flex-shrink: 0;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .project-item:hover .project-arrow { color: var(--accent); transform: translate(2px, -2px); }
+
+    /* ── SKILLS ── */
+    .skill-group { margin-bottom: 1.75rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.65rem;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      font-size: 0.82rem;
+      padding: 5px 13px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--ink);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── ARTIFACTS ── */
+    .artifact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .artifact-card:last-child { margin-bottom: 0; }
+    .artifact-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .artifact-title { font-size: 0.95rem; font-weight: 700; }
+    .artifact-badge {
+      font-size: 0.68rem;
+      padding: 2px 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .artifact-desc {
+      font-size: 0.87rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .artifact-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .meta-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.2rem;
+    }
+    .meta-val { font-size: 0.82rem; color: var(--ink); }
+
+    /* ── CONTACT ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info p {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .clinks { display: flex; flex-direction: column; gap: 0.5rem; }
+    .clink {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none; color: var(--ink);
+      font-size: 0.85rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .clink:hover { border-color: var(--accent); color: var(--accent); }
+    .clink svg { flex-shrink: 0; opacity: 0.45; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 0.8rem; }
+    .field { display: flex; flex-direction: column; gap: 0.3rem; }
+    .field label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .field input, .field textarea {
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 9px 12px;
+      color: var(--ink);
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.15s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); }
+    .field textarea { min-height: 100px; }
+    ::placeholder { color: #d1d5db; }
+
+    .btn-send {
+      align-self: flex-start;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+      padding: 9px 20px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-send:hover { background: #1d4ed8; }
+
+    /* ── PANEL TITLE ── */
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .project, .artifact {
-      border: 1px solid #e5e7eb;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      background: white;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #6b7280;
-      font-size: 0.9rem;
+    @media (max-width: 580px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .artifact-meta { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Tabs at the top -->
-  <div class="tabs">
-    <button class="tab-button active" data-tab="about">About</button>
-    <button class="tab-button" data-tab="projects">Projects</button>
-    <button class="tab-button" data-tab="skills">Skills</button>
-    <button class="tab-button" data-tab="artifacts">Artifacts</button>
-    <button class="tab-button" data-tab="contact">Contact</button>
-  </div>
-
+  <!-- HEADER -->
   <header>
-    <h1>Your Name</h1>
-    <p>Software engineer focused on automation and infrastructure, building reliable systems that scale effectively.</p>
-    <p>
-      <a href="https://github.com/your-username" style="color:#93c5fd;">GitHub</a> ·
-      <a href="https://www.linkedin.com/in/your-profile" style="color:#93c5fd;">LinkedIn</a> ·
-      <a href="mailto:you@example.com" style="color:#93c5fd;">Email</a>
-    </p>
+    <div class="header-inner">
+      <h1>Daniel Nguyen</h1>
+      <p class="header-role">Software Engineer</p>
+      <div class="header-links">
+        <a href="https://github.com/your-username" target="_blank">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          LinkedIn
+        </a>
+        <a href="/cdn-cgi/l/email-protection#80f9eff5c0e5f8e1edf0ece5aee3efed">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+          Email
+        </a>
+      </div>
+
+      <!-- TABS flush to bottom of header -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="about">About</button>
+        <button class="tab-btn" data-tab="projects">Projects</button>
+        <button class="tab-btn" data-tab="skills">Skills</button>
+        <button class="tab-btn" data-tab="artifacts">Artifacts</button>
+        <button class="tab-btn" data-tab="contact">Contact</button>
+      </div>
+    </div>
   </header>
 
+  <!-- CONTENT -->
   <main>
 
     <!-- ABOUT -->
-    <section id="about" class="tab-content active">
-      <h2>About</h2>
-      <p>
-        I’m a software engineer who enjoys building systems that make work easier, faster, and more reliable.
-        Automation and infrastructure are where I do my best thinking. I like taking complex workflows and turning
-        them into clean, repeatable processes that teams can trust.
-      </p>
-    </section>
+    <div id="about" class="tab-panel active">
+      <h2 class="panel-title">About</h2>
+      <div class="about-body">
+        <p>
+          I'm a software engineer focused on automation and infrastructure — building reliable systems that reduce friction and scale with confidence.
+        </p>
+        <p>
+          I approach engineering with curiosity and a practical mindset. I care about clarity, maintainability, and building tools that genuinely improve how people work. My goal is always the same: create systems that stay out of the way and let people focus on what matters.
+        </p>
+      </div>
+    </div>
 
     <!-- PROJECTS -->
-    <section id="projects" class="tab-content">
-      <h2>Projects</h2>
-      <div class="projects">
-        <div class="project">
-          <h3>Project Title 1</h3>
-          <p>Short description of what this project does and why it matters.</p>
-          <p><strong>Tech:</strong> Python, Pandas, Power BI</p>
-          <p><a href="https://github.com/your-username/project-1">View on GitHub</a></p>
-        </div>
+    <div id="projects" class="tab-panel">
+      <h2 class="panel-title">Projects</h2>
+      <div class="project-list">
 
-        <div class="project">
-          <h3>Project Title 2</h3>
-          <p>Another concise description highlighting your role and impact.</p>
-          <p><strong>Tech:</strong> R, Shiny, Tableau</p>
-          <p><a href="https://github.com/your-username/project-2">View on GitHub</a></p>
-        </div>
+        <a href="#" class="project-item">
+          <div class="project-body">
+            <div class="project-name">Project Title 1</div>
+            <div class="project-desc">Short description of what this project does and why it matters.</div>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a href="#" class="project-item">
+          <div class="project-body">
+            <div class="project-name">Project Title 2</div>
+            <div class="project-desc">Another concise description highlighting your role and impact.</div>
+            <div class="tag-row"><span class="tag">Go</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span></div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a href="#" class="project-item">
+          <div class="project-body">
+            <div class="project-name">Project Title 3</div>
+            <div class="project-desc">A third project showcasing a different area of your expertise.</div>
+            <div class="tag-row"><span class="tag">AWS</span><span class="tag">Bash</span><span class="tag">Monitoring</span></div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
       </div>
-    </section>
+    </div>
 
     <!-- SKILLS -->
-    <section id="skills" class="tab-content">
-      <h2>Skills</h2>
-      <ul>
-        <li>Automation & Infrastructure</li>
-        <li>Python, Go, Bash, SQL</li>
-        <li>CI/CD, Docker, Kubernetes</li>
-        <li>Cloud: AWS, Azure</li>
-      </ul>
-    </section>
+    <div id="skills" class="tab-panel">
+      <h2 class="panel-title">Skills</h2>
+      <div class="skill-group">
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">Go</span>
+          <span class="chip">Bash</span><span class="chip">SQL</span>
+          <span class="chip">TypeScript</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Infrastructure</div>
+        <div class="skill-chips">
+          <span class="chip">Docker</span><span class="chip">Kubernetes</span>
+          <span class="chip">Terraform</span><span class="chip">CI/CD</span>
+          <span class="chip">Ansible</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Cloud & Platforms</div>
+        <div class="skill-chips">
+          <span class="chip">AWS</span><span class="chip">Azure</span>
+          <span class="chip">GCP</span><span class="chip">Linux</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Practices</div>
+        <div class="skill-chips">
+          <span class="chip">Automation</span><span class="chip">Observability</span>
+          <span class="chip">API Design</span><span class="chip">Code Review</span>
+        </div>
+      </div>
+    </div>
 
     <!-- ARTIFACTS -->
-    <section id="artifacts" class="tab-content">
-      <h2>Artifacts</h2>
+    <div id="artifacts" class="tab-panel">
+      <h2 class="panel-title">Artifacts</h2>
 
-      <div class="artifact">
-        <h3>Title</h3>
-        <p>What is it? (e.g., "Marketing Plan for Small Business")</p>
-
-        <h3>Objective</h3>
-        <p>Why did you create it? (e.g., "To learn how to create a marketing plan.")</p>
-
-        <h3>Process</h3>
-        <p>How did you make it? (e.g., "I researched market trends, interviewed experts, and used a marketing template.")</p>
-
-        <h3>Tools</h3>
-        <p>What did you use? (e.g., "Microsoft PowerPoint, Excel, and Canva.")</p>
-
-        <h3>Value Proposition</h3>
-        <p>Why is it important? (e.g., "It shows my ability to analyze market needs and create effective strategies.")</p>
+      <div class="artifact-card">
+        <div class="artifact-header">
+          <span class="artifact-title">Artifact Title</span>
+          <span class="artifact-badge">Tool</span>
+        </div>
+        <p class="artifact-desc">A brief description of what this artifact is and what problem it solves.</p>
+        <div class="artifact-meta">
+          <div>
+            <div class="meta-label">Objective</div>
+            <div class="meta-val">Why you created it.</div>
+          </div>
+          <div>
+            <div class="meta-label">Tools Used</div>
+            <div class="meta-val">e.g. Python, Docker, Excel</div>
+          </div>
+          <div>
+            <div class="meta-label">Process</div>
+            <div class="meta-val">How you built it.</div>
+          </div>
+          <div>
+            <div class="meta-label">Value</div>
+            <div class="meta-val">What it demonstrates.</div>
+          </div>
+        </div>
       </div>
 
-    </section>
+    </div>
 
     <!-- CONTACT -->
-    <section id="contact" class="tab-content">
-      <h2>Contact</h2>
-      <p>
-        Want to collaborate or learn more about my work? Reach me at
-        <a href="mailto:you@example.com">you@example.com</a>.
-      </p>
-    </section>
+    <div id="contact" class="tab-panel">
+      <h2 class="panel-title">Contact</h2>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <p>Want to collaborate or learn more about my work? I'm open to full-time roles, contracts, and interesting projects.</p>
+          <div class="clinks">
+            <a href="/cdn-cgi/l/email-protection#265f495366435e474b564a430845494b" class="clink">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+              <span class="__cf_email__" data-cfemail="c2bbadb782a7baa3afb2aea7eca1adaf">[email&#160;protected]</span>
+            </a>
+            <a href="https://github.com/your-username" class="clink" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              github.com/your-username
+            </a>
+            <a href="https://linkedin.com/in/your-profile" class="clink" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              linkedin.com/in/your-profile
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="field">
+            <label>Name</label>
+            <input type="text" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label>Message</label>
+            <textarea placeholder="What's on your mind?"></textarea>
+          </div>
+          <button type="submit" class="btn-send" id="send-btn">Send →</button>
+        </form>
+      </div>
+    </div>
 
   </main>
 
-  <footer>
-    © <span id="year"></span> Your Name
-  </footer>
+
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    const buttons = document.querySelectorAll('.tab-button');
-    const contents = document.querySelectorAll('.tab-content');
+    const btns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const tab = button.dataset.tab;
-
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        contents.forEach(content => {
-          content.classList.toggle('active', content.id === tab);
-        });
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
       });
     });
-  </script>
 
-</body>
-</html>
+    function handleSubmit(e) {
+      e.preventDefault();
+      con
