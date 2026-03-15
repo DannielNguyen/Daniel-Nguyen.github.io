@@ -4,20 +4,97 @@
   <meta charset="UTF-8" />
   <title>Your Name | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    header { background: #111827; color: #f9fafb; padding: 2rem; text-align: center; }
-    main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-    h1, h2 { margin-bottom: 0.5rem; }
-    .section { margin-bottom: 2rem; }
-    .projects { display: grid; gap: 1rem; }
-    .project { border: 1px solid #e5e7eb; padding: 1rem; border-radius: 0.5rem; }
-    a { color: #2563eb; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { text-align: center; padding: 1rem; color: #6b7280; font-size: 0.9rem; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f9fafb;
+    }
+
+    header {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: #e5e7eb;
+      padding: 1rem;
+    }
+
+    .tab-button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background: #d1d5db;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .tab-button.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* Content */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .projects {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .project {
+      border: 1px solid #e5e7eb;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
+
 <body>
+
   <header>
     <h1>Your Name</h1>
     <p>Data Analyst | Developer | Your Tagline Here</p>
@@ -28,16 +105,25 @@
     </p>
   </header>
 
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-button active" data-tab="about">About</button>
+    <button class="tab-button" data-tab="projects">Projects</button>
+    <button class="tab-button" data-tab="skills">Skills</button>
+    <button class="tab-button" data-tab="contact">Contact</button>
+  </div>
+
+  <!-- Content -->
   <main>
-    <section class="section">
+    <section id="about" class="tab-content active">
       <h2>About</h2>
       <p>
-        Briefly introduce who you are, what you do, and what you’re interested in.
-        Focus on the kind of work you want more of.
+        Write a short introduction about yourself here. Focus on your strengths,
+        interests, and the type of work you want to do.
       </p>
     </section>
 
-    <section class="section">
+    <section id="projects" class="tab-content">
       <h2>Projects</h2>
       <div class="projects">
         <div class="project">
@@ -46,6 +132,7 @@
           <p><strong>Tech:</strong> Python, Pandas, Power BI</p>
           <p><a href="https://github.com/your-username/project-1">View on GitHub</a></p>
         </div>
+
         <div class="project">
           <h3>Project Title 2</h3>
           <p>Another concise description highlighting your role and impact.</p>
@@ -55,7 +142,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="skills" class="tab-content">
       <h2>Skills</h2>
       <ul>
         <li>Data Analytics: Python, R, SQL</li>
@@ -64,7 +151,7 @@
       </ul>
     </section>
 
-    <section class="section">
+    <section id="contact" class="tab-content">
       <h2>Contact</h2>
       <p>
         Want to collaborate or learn more about my work? Reach me at
@@ -79,6 +166,23 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.dataset.tab;
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        contents.forEach(content => {
+          content.classList.toggle('active', content.id === tab);
+        });
+      });
+    });
   </script>
+
 </body>
 </html>
