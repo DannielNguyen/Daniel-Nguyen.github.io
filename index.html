@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Daniel Nguyen| Portfolio</title>
+  <title>Your Name | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
@@ -14,39 +14,23 @@
       background: #f9fafb;
     }
 
-    header {
-      background: #111827;
-      color: #f9fafb;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    h1, h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    a {
-      color: #2563eb;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Tabs */
+    /* Top Navigation Tabs */
     .tabs {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      background: #e5e7eb;
+      background: #ffffff;
       padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .tab-button {
       padding: 0.6rem 1.2rem;
       border: none;
-      background: #d1d5db;
+      background: #e5e7eb;
       border-radius: 0.4rem;
       cursor: pointer;
       font-size: 1rem;
@@ -57,7 +41,13 @@
       color: white;
     }
 
-    /* Content */
+    header {
+      background: #111827;
+      color: #f9fafb;
+      padding: 2rem;
+      text-align: center;
+    }
+
     main {
       max-width: 900px;
       margin: 2rem auto;
@@ -77,7 +67,7 @@
       gap: 1rem;
     }
 
-    .project {
+    .project, .artifact {
       border: 1px solid #e5e7eb;
       padding: 1rem;
       border-radius: 0.5rem;
@@ -95,9 +85,18 @@
 
 <body>
 
+  <!-- Tabs at the top -->
+  <div class="tabs">
+    <button class="tab-button active" data-tab="about">About</button>
+    <button class="tab-button" data-tab="projects">Projects</button>
+    <button class="tab-button" data-tab="skills">Skills</button>
+    <button class="tab-button" data-tab="artifacts">Artifacts</button>
+    <button class="tab-button" data-tab="contact">Contact</button>
+  </div>
+
   <header>
     <h1>Your Name</h1>
-    <p>Data Analyst | Developer | Your Tagline Here</p>
+    <p>Software engineer focused on automation and infrastructure, building reliable systems that scale effectively.</p>
     <p>
       <a href="https://github.com/your-username" style="color:#93c5fd;">GitHub</a> ·
       <a href="https://www.linkedin.com/in/your-profile" style="color:#93c5fd;">LinkedIn</a> ·
@@ -105,23 +104,19 @@
     </p>
   </header>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-button active" data-tab="about">About</button>
-    <button class="tab-button" data-tab="projects">Projects</button>
-    <button class="tab-button" data-tab="skills">Skills</button>
-    <button class="tab-button" data-tab="contact">Contact</button>
-  </div>
-
-  <!-- Content -->
   <main>
+
+    <!-- ABOUT -->
     <section id="about" class="tab-content active">
       <h2>About</h2>
       <p>
-        Software engineer focused on automation and infrastructure, building reliable systems that scale effectively
+        I’m a software engineer who enjoys building systems that make work easier, faster, and more reliable.
+        Automation and infrastructure are where I do my best thinking. I like taking complex workflows and turning
+        them into clean, repeatable processes that teams can trust.
       </p>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects" class="tab-content">
       <h2>Projects</h2>
       <div class="projects">
@@ -141,15 +136,41 @@
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills" class="tab-content">
       <h2>Skills</h2>
       <ul>
-        <li>Data Analytics: Python, R, SQL</li>
-        <li>Visualization: Power BI, Tableau</li>
-        <li>Machine Learning: scikit-learn, Azure ML</li>
+        <li>Automation & Infrastructure</li>
+        <li>Python, Go, Bash, SQL</li>
+        <li>CI/CD, Docker, Kubernetes</li>
+        <li>Cloud: AWS, Azure</li>
       </ul>
     </section>
 
+    <!-- ARTIFACTS -->
+    <section id="artifacts" class="tab-content">
+      <h2>Artifacts</h2>
+
+      <div class="artifact">
+        <h3>Title</h3>
+        <p>What is it? (e.g., "Marketing Plan for Small Business")</p>
+
+        <h3>Objective</h3>
+        <p>Why did you create it? (e.g., "To learn how to create a marketing plan.")</p>
+
+        <h3>Process</h3>
+        <p>How did you make it? (e.g., "I researched market trends, interviewed experts, and used a marketing template.")</p>
+
+        <h3>Tools</h3>
+        <p>What did you use? (e.g., "Microsoft PowerPoint, Excel, and Canva.")</p>
+
+        <h3>Value Proposition</h3>
+        <p>Why is it important? (e.g., "It shows my ability to analyze market needs and create effective strategies.")</p>
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact" class="tab-content">
       <h2>Contact</h2>
       <p>
@@ -157,6 +178,7 @@
         <a href="mailto:you@example.com">you@example.com</a>.
       </p>
     </section>
+
   </main>
 
   <footer>
