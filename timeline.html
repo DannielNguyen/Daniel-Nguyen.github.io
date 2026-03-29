@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Evolution Timeline — Daniel Nguyen</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #818cf8;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 15% 15%, rgba(233, 213, 255, 0.8) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 55% at 85% 80%, rgba(99, 102, 241, 0.6) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 45% at 60% 30%, rgba(251, 207, 232, 0.4) 0%, transparent 50%),
+        linear-gradient(145deg, #e9d5ff 0%, #a5b4fc 40%, #6366f1 100%);
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .paper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fafafa;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 40px rgba(0,0,0,0.14);
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .page-header {
+      background: #111827;
+      padding: 2rem 2rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .page-header-left h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f9fafb;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+
+    .page-header-left p {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: #93c5fd;
+      text-decoration: none;
+      padding: 5px 11px;
+      border: 1px solid rgba(147,197,253,0.25);
+      border-radius: 100px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .back-btn:hover { background: rgba(147,197,253,0.1); }
+
+    /* CONTENT */
+    .page-content { padding: 2.5rem 2rem; }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: #e5e7eb;
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.25rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #6366f1;
+      z-index: 1;
+    }
+
+    .timeline-year {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6366f1;
+      background: #eff6ff;
+      border: 1px solid #c7d2fe;
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.65;
+    }
+
+    .timeline-desc ul {
+      padding-left: 1.1rem;
+      margin-top: 0.25rem;
+    }
+
+    .timeline-desc li { margin-bottom: 0.2rem; }
+
+    /* ERA DIVIDER */
+    .era-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 1.5rem;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .era-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper">
+
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>The Evolution of AI</h1>
+        <p>Timeline Infographic · Daniel Nguyen</p>
+      </div>
+      <a href="index.html" class="back-btn">← Back</a>
+    </div>
+
+    <div class="page-content">
+      <div class="timeline">
+
+        <div class="era-label">Early Foundations</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">1956</span>
+          <div class="timeline-title">Dartmouth Workshop</div>
+          <div class="timeline-desc">
+            Widely recognized as the birth of AI as a formal discipline. Researchers proposed that "every aspect of learning or intelligence" could be simulated.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">1966</span>
+          <div class="timeline-title">ELIZA</div>
+          <div class="timeline-desc">
+            Joseph Weizenbaum's chatbot demonstrated early natural language processing — a precursor to conversational AI.
+          </div>
+        </div>
+
+        <div class="era-label">AI Winters</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">1974</span>
+          <div class="timeline-title">First AI Winter Begins</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Funding cuts and unmet expectations slowed progress.</li>
+              <li>Symbolic AI hit computational limits.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">1980</span>
+          <div class="timeline-title">Expert Systems Boom</div>
+          <div class="timeline-desc">
+            Businesses adopted rule-based systems like XCON. AI saw its first major commercial wave.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">1987</span>
+          <div class="timeline-title">Second AI Winter</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Collapse of the expert systems market.</li>
+              <li>Specialized hardware (Lisp machines) became obsolete.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="era-label">Modern Era</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">1997</span>
+          <div class="timeline-title">IBM Deep Blue</div>
+          <div class="timeline-desc">
+            First machine to defeat a reigning world chess champion. A landmark in symbolic search and brute-force computation.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2006</span>
+          <div class="timeline-title">Deep Learning Revival</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Geoffrey Hinton and colleagues reintroduced neural networks with improved training.</li>
+              <li>Sparked modern machine learning momentum.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2020s</span>
+          <div class="timeline-title">Foundation Models & Cloud AI</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Large language models (LLMs) reshape automation, analytics, and creativity.</li>
+              <li>Cloud platforms (Azure, AWS, Google Cloud) enable global-scale AI deployment.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
