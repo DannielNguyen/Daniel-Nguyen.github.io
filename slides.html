@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ML vs Deep Learning — Daniel Nguyen</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #818cf8;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 15% 15%, rgba(233, 213, 255, 0.8) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 55% at 85% 80%, rgba(99, 102, 241, 0.6) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 45% at 60% 30%, rgba(251, 207, 232, 0.4) 0%, transparent 50%),
+        linear-gradient(145deg, #e9d5ff 0%, #a5b4fc 40%, #6366f1 100%);
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .paper {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fafafa;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 40px rgba(0,0,0,0.14);
+      overflow: hidden;
+    }
+
+    .page-header {
+      background: #111827;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f9fafb;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.15rem;
+    }
+
+    .page-header p {
+      font-size: 0.72rem;
+      color: #9ca3af;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: #93c5fd;
+      text-decoration: none;
+      padding: 5px 11px;
+      border: 1px solid rgba(147,197,253,0.25);
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .back-btn:hover { background: rgba(147,197,253,0.1); }
+
+    .slides-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #f3f4f6;
+    }
+
+    .slides-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Placeholder shown until embed URL is added */
+    .placeholder {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: #9ca3af;
+      font-size: 0.88rem;
+      text-align: center;
+      padding: 2rem;
+    }
+    .placeholder-icon { font-size: 2.5rem; }
+  </style>
+</head>
+<body>
+
+  <div class="paper">
+
+    <div class="page-header">
+      <div>
+        <h1>Machine Learning vs. Deep Learning</h1>
+        <p>Artifact · Daniel Nguyen</p>
+      </div>
+      <a href="index.html" class="back-btn">← Back</a>
+    </div>
+
+    <div class="slides-wrap">
+      <iframe
+        src="https://docs.google.com/presentation/d/1QDhTAl9keZuWv8P3A6kBPtv1GqjOm3EJbeWv9p64mKI/embed?start=false&loop=false&delayms=3000"
+        allowfullscreen="true"
+        mozallowfullscreen="true"
+        webkitallowfullscreen="true"
+      ></iframe>
+    </div>
+
+  </div>
+
+</body>
+</html>
