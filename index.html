@@ -216,6 +216,35 @@
     }
     .chip:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* ── LANDING ARTIFACTS ── */
+    .landing-artifacts-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .landing-artifacts { display: flex; flex-direction: column; }
+    .landing-artifact-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 1rem;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .landing-artifact-card:last-child { margin-bottom: 0; }
+    .landing-artifact-img svg { width: 100%; height: auto; display: block; }
+
+    @media (max-width: 520px) {
+      .landing-artifact-card { grid-template-columns: 1fr; }
+    }
+
     /* ── ARTIFACTS ── */
     .artifact-img {
       background: #f8faff;
@@ -412,6 +441,94 @@
           <p>
             I approach engineering with curiosity and a practical mindset. I care about clarity, maintainability, and building tools that genuinely improve how people work. My goal is always the same: create systems that stay out of the way and let people focus on what matters.
           </p>
+        </div>
+
+        <!-- ARTIFACTS PREVIEW -->
+        <div class="landing-artifacts-header">
+          <span class="skill-group-label" style="margin:0;">Artifacts</span>
+          <button class="detail-btn" onclick="switchTab('artifacts')" style="font-size:0.72rem;">View all →</button>
+        </div>
+
+        <div class="landing-artifacts">
+
+          <div class="landing-artifact-card">
+            <div class="landing-artifact-img">
+              <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="60" y1="10" x2="60" y2="90" stroke="#cbd5e1" stroke-width="1"/>
+                <circle cx="60" cy="20" r="4" fill="#fff" stroke="#2563eb"/><circle cx="60" cy="38" r="4" fill="#fff" stroke="#2563eb"/><circle cx="60" cy="56" r="4" fill="#fff" stroke="#2563eb"/><circle cx="60" cy="74" r="4" fill="#fff" stroke="#2563eb"/>
+                <line x1="60" y1="20" x2="80" y2="20"/><text x="84" y="24" font-size="9" stroke="none" fill="#1f2937" font-family="Arial">1956 — Dartmouth Workshop</text>
+                <line x1="60" y1="38" x2="80" y2="38"/><text x="84" y="42" font-size="9" stroke="none" fill="#1f2937" font-family="Arial">1974 — First AI Winter</text>
+                <line x1="60" y1="56" x2="80" y2="56"/><text x="84" y="60" font-size="9" stroke="none" fill="#1f2937" font-family="Arial">1997 — IBM Deep Blue</text>
+                <line x1="60" y1="74" x2="80" y2="74"/><text x="84" y="78" font-size="9" stroke="none" fill="#1f2937" font-family="Arial">2020s — Foundation Models</text>
+              </svg>
+            </div>
+            <div class="landing-artifact-info">
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.3rem;">
+                <span class="artifact-title" style="font-size:0.88rem;">AI Evolution Timeline</span>
+                <span class="artifact-badge">Visual</span>
+              </div>
+              <p style="font-size:0.8rem; color:#6b7280; margin-bottom:0.6rem;">A visual map of AI progression from the early age to modern LLMs.</p>
+              <a href="timeline.html" class="detail-btn" style="text-decoration:none; font-size:0.72rem;">View ↗</a>
+            </div>
+          </div>
+
+          <div class="landing-artifact-card">
+            <div class="landing-artifact-img">
+              <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="30" y="15" width="100" height="65" rx="3" stroke="#cbd5e1"/><line x1="30" y1="28" x2="130" y2="28" stroke="#cbd5e1"/><line x1="45" y1="38" x2="115" y2="38" stroke="#e2e8f0" stroke-width="1"/><line x1="45" y1="47" x2="105" y2="47" stroke="#e2e8f0" stroke-width="1"/><line x1="45" y1="56" x2="110" y2="56" stroke="#e2e8f0" stroke-width="1"/>
+                <rect x="150" y="15" width="100" height="65" rx="3" stroke="#cbd5e1"/><line x1="150" y1="28" x2="250" y2="28" stroke="#cbd5e1"/><line x1="165" y1="38" x2="235" y2="38" stroke="#e2e8f0" stroke-width="1"/><line x1="165" y1="47" x2="225" y2="47" stroke="#e2e8f0" stroke-width="1"/><line x1="165" y1="56" x2="230" y2="56" stroke="#e2e8f0" stroke-width="1"/>
+                <text x="52" y="24" font-size="7" stroke="none" fill="#6b7280" font-family="Arial">Machine Learning</text><text x="172" y="24" font-size="7" stroke="none" fill="#6b7280" font-family="Arial">Deep Learning</text>
+                <line x1="140" y1="20" x2="140" y2="80" stroke="#2563eb" stroke-width="1" stroke-dasharray="3,2"/>
+              </svg>
+            </div>
+            <div class="landing-artifact-info">
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.3rem;">
+                <span class="artifact-title" style="font-size:0.88rem;">ML / DL Real-World App</span>
+                <span class="artifact-badge">Slides</span>
+              </div>
+              <p style="font-size:0.8rem; color:#6b7280; margin-bottom:0.6rem;">Group presentation on ML vs. deep learning with real-world use cases.</p>
+              <a href="ml_dl.pdf" download class="detail-btn" style="text-decoration:none; font-size:0.72rem;">Download ↓</a>
+            </div>
+          </div>
+
+          <div class="landing-artifact-card">
+            <div class="landing-artifact-img">
+              <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="60" y="12" width="160" height="76" rx="3" stroke="#cbd5e1"/>
+                <line x1="75" y1="28" x2="205" y2="28" stroke="#e2e8f0" stroke-width="1"/><line x1="75" y1="38" x2="205" y2="38" stroke="#e2e8f0" stroke-width="1"/><line x1="75" y1="48" x2="205" y2="48" stroke="#e2e8f0" stroke-width="1"/><line x1="75" y1="58" x2="175" y2="58" stroke="#e2e8f0" stroke-width="1"/><line x1="75" y1="68" x2="190" y2="68" stroke="#e2e8f0" stroke-width="1"/><line x1="75" y1="78" x2="160" y2="78" stroke="#e2e8f0" stroke-width="1"/>
+                <line x1="75" y1="20" x2="145" y2="20" stroke="#2563eb" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="landing-artifact-info">
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.3rem;">
+                <span class="artifact-title" style="font-size:0.88rem;">Adapting to Challenges</span>
+                <span class="artifact-badge">Writing</span>
+              </div>
+              <p style="font-size:0.8rem; color:#6b7280; margin-bottom:0.6rem;">Reflective essay on leadership, adaptability, and principled decision-making.</p>
+              <a href="adapting_challenges.docx" download class="detail-btn" style="text-decoration:none; font-size:0.72rem;">Download ↓</a>
+            </div>
+          </div>
+
+          <div class="landing-artifact-card">
+            <div class="landing-artifact-img">
+              <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="100" cy="50" r="22" stroke="#cbd5e1"/><circle cx="180" cy="50" r="22" stroke="#cbd5e1"/>
+                <path d="M122 38 Q140 24 158 38" stroke="#2563eb" stroke-width="1.5"/><path d="M122 62 Q140 76 158 62" stroke="#2563eb" stroke-width="1.5"/>
+                <line x1="93" y1="44" x2="107" y2="44" stroke="#6b7280" stroke-width="1"/><line x1="93" y1="50" x2="107" y2="50" stroke="#6b7280" stroke-width="1"/><line x1="93" y1="56" x2="107" y2="56" stroke="#6b7280" stroke-width="1"/>
+                <line x1="173" y1="44" x2="187" y2="44" stroke="#6b7280" stroke-width="1"/><line x1="173" y1="50" x2="187" y2="50" stroke="#6b7280" stroke-width="1"/><line x1="173" y1="56" x2="187" y2="56" stroke="#6b7280" stroke-width="1"/>
+                <text x="88" y="88" font-size="7" stroke="none" fill="#6b7280" font-family="Arial">Speaker</text><text x="168" y="88" font-size="7" stroke="none" fill="#6b7280" font-family="Arial">Listener</text>
+              </svg>
+            </div>
+            <div class="landing-artifact-info">
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.3rem;">
+                <span class="artifact-title" style="font-size:0.88rem;">Problems of Confusion</span>
+                <span class="artifact-badge">Writing</span>
+              </div>
+              <p style="font-size:0.8rem; color:#6b7280; margin-bottom:0.6rem;">Essay on communication gaps in leadership and steps to improve clarity.</p>
+              <a href="problems_of_confusion.docx" download class="detail-btn" style="text-decoration:none; font-size:0.72rem;">Download ↓</a>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -736,6 +853,13 @@
         document.getElementById(btn.dataset.tab).classList.add('active');
       });
     });
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
 
     function toggleDetail(btn) {
       const card = btn.closest('.artifact-card');
